@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Prescriptions - Medicine Store{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h2><i class="bi bi-file-medical"></i> Prescription Management</h2>
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="/prescriptions/add" class="btn btn-info">
+            <i class="bi bi-plus-circle"></i> Add Prescription
+        </a>
+    </div>
+</div>
+
+{% if prescriptions %}
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Prescription ID</th>
+                <th>Doctor</th>
+                <th>Patient</th>
+                <th>Medicines</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prescription in prescriptions %}
+            <tr>
+                <td>{{ prescription.prescription_id }}</td>
+                <td>{{ prescription.doctor_name }}</td>
+                <td>{{ prescription.patient_name }}</td>
+                <td>
+                    <span class="badge bg-info">{{ prescription.prescribed_medicines|length }}</span>
+                </td>
+                <td>
+                    {% if prescription.is_verified %}
+                        <span class="badge bg-success">Verified</span>
+                    {% else %}
+                        <span class="badge bg-warning">Pending</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-primary">View</a>
+                    <a href="#" class="btn btn-sm btn-success">Verify</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <i class="bi bi-info-circle"></i> No prescriptions found. <a href="/prescriptions/add">Add first prescription</a>
+</div>
+{% endif %}
+{% endblock %}
