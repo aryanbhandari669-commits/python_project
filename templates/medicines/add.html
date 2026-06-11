@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Add Medicine - Medicine Store{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-plus-circle"></i> Add New Medicine</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" class="needs-validation" novalidate>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="medicine_id" class="form-label">Medicine ID</label>
+                            <input type="text" class="form-control" id="medicine_id" name="medicine_id" required>
+                            <div class="invalid-feedback">Please provide a medicine ID.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="medicine_name" class="form-label">Medicine Name</label>
+                            <input type="text" class="form-control" id="medicine_name" name="medicine_name" required>
+                            <div class="invalid-feedback">Please provide a medicine name.</div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="company_name" class="form-label">Company Name</label>
+                            <input type="text" class="form-control" id="company_name" name="company_name" required>
+                            <div class="invalid-feedback">Please provide a company name.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" id="category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="Antibiotic">Antibiotic</option>
+                                <option value="Painkiller">Painkiller</option>
+                                <option value="Vitamin">Vitamin</option>
+                                <option value="Cough Syrup">Cough Syrup</option>
+                                <option value="Injection">Injection</option>
+                                <option value="Syrup">Syrup</option>
+                                <option value="Tablet">Tablet</option>
+                                <option value="Capsule">Capsule</option>
+                                <option value="Cream">Cream</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a category.</div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="price" class="form-label">Price (₹)</label>
+                            <input type="number" class="form-control" id="price" name="price" step="0.01" min="0" required>
+                            <div class="invalid-feedback">Please provide a valid price.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="0" required>
+                            <div class="invalid-feedback">Please provide a quantity.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="expiry_date" class="form-label">Expiry Date</label>
+                        <input type="date" class="form-control" id="expiry_date" name="expiry_date" required>
+                        <div class="invalid-feedback">Please provide an expiry date.</div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="/medicines" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Add Medicine
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        if (!this.checkValidity()) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        this.classList.add('was-validated');
+    });
+</script>
+{% endblock %}
